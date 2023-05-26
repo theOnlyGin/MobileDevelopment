@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MireaProject</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Daniil Kokuev</string>
+    <string name="nav_header_subtitle">https://vk.com/theginhound</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="browser">Browser</string>
+    <string name="data">Data</string>
+    <string name="next">NEXT</string>
+    <string name="back">BACK</string>
+    <string name="title1">Это - MireaProject</string>
+    <string name="text1">MireaProject – приложение созданное поднять ваше настроение.</string>
+    <string name="title2">Мемы</string>
+    <string name="text2">Актуальные, а главное смешные мемы вас ждут...</string>
+    <string name="title3">...Здесь!</string>
+    <string name="text3">Начинайте пользоваться! Без регистрации!!!</string>
+    <string name="homeText">– Многие жалуются на свою внешность, но на мозги не жалуется никто.
+        – Превосходство — это когда есть на что насрать, и есть чем.
+        – Есть такая штука как «Двигаться дальше». Попробуйте, поможет.
+        – Теория – это когда вы знаете все, но ничего не работает. Практика – это когда все работает, но никто не знает почему. Мы совмещаем теорию и практику – ничего не работает и никто не знает почему!
+        – Джейсон Стейтем</string>
+    <string name="homeTitle">Мем-цитаты</string>
+</resources>
