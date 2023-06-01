@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-
 public class MainActivity extends AppCompatActivity {
     Fragment fragment1, fragment2;
     FragmentManager fragmentManager;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         fragmentManager = getSupportFragmentManager();
         switch (view.getId()){
-            case R.id.btnFirstFragment:
+            case R.id.btnFirstFragment: 
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment1).
                         commit();
                 break;

@@ -17,8 +17,10 @@
             <option value="$PROJECT_DIR$/emptyactivity/dialog/dialogfragmentsamrabota" />
             <option value="$PROJECT_DIR$/emptyactivity/dialog2" />
             <option value="$PROJECT_DIR$/emptyactivity/notificationapp" />
+            <option value="$PROJECT_DIR$/intentfilter" />
             <option value="$PROJECT_DIR$/multiactivity" />
             <option value="$PROJECT_DIR$/toastapp" />
+            <option value="$PROJECT_DIR$/zerocode" />
           </set>
         </option>
       </GradleProjectSettings>
