@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
         Employee employee = new Employee();
         employee.id = 0;
         employee.name = "Iron Man";
-        employee.salary = 10000;
+        employee.salary = 20000;
         // запись сотрудников в базу
         employeeDao.insert(employee);
         // Загрузка всех работников
         List<Employee> employees = employeeDao.getAll();
-        // Получение определенного работника с id = 1
-        employee = employeeDao.getById(4);
+        // Получение определенного работника с id
+        employee = employeeDao.getById(2);
         // Обновление полей объекта
         employee.salary = 20000;
         employeeDao.update(employee);

@@ -15,15 +15,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Constraints constraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.UNMETERED)
                 .setRequiresCharging(true)
                 .build();
+
         WorkRequest uploadWorkRequest =
                 new OneTimeWorkRequest.Builder(UploadWorker.class)
                         .setConstraints(constraints)
                         .build();
+
         WorkManager
                 .getInstance(this)
                 .enqueue(uploadWorkRequest);

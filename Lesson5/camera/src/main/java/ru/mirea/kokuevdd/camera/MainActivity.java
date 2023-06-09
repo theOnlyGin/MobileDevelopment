@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         int storagePermissionStatus = ContextCompat.checkSelfPermission(this, android.Manifest.permission.
                 WRITE_EXTERNAL_STORAGE);
 
+// Выполняется запрос к пользователь на получение необходимых разрешений
         if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED && storagePermissionStatus
                 == PackageManager.PERMISSION_GRANTED) {
             isWork = true;
         } else {
-// Выполняется запрос к пользователь на получение необходимых разрешений
             ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.CAMERA,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
         }
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
 // проверка на наличие разрешений для камеры
                 if (isWork) {
                     try {

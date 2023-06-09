@@ -10,8 +10,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/FragmentWorker" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/nootificationworker" />
+            <option value="$PROJECT_DIR$/fragmentworker" />
           </set>
         </option>
       </GradleProjectSettings>

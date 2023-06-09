@@ -10,7 +10,7 @@ public	class MyLooper	extends	Thread{
     public Handler mHandler;
     private	Handler	mainHandler;
     public	MyLooper(Handler	mainThreadHandler)	{
-        mainHandler	=mainThreadHandler;
+        mainHandler = mainThreadHandler;
     }
     public	void	run()	{
         Log.d("MyLooper",	"run");
