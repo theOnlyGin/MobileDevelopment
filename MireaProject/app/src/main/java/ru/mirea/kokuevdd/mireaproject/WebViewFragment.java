@@ -9,9 +9,11 @@ public class WebViewFragment extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-        // loadurl function will load the
-        // url we will provide to our webview
+        // Функция loadUrl загрузит URL, который мы передадим, в наш WebView.
         view.loadUrl(url);
+
+        // Возвращаем true, чтобы указать, что мы обработали переход по URL сами.
         return true;
     }
 }
+

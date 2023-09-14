@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("ru.mirea.efimovar.profile", appContext.getPackageName());
+        assertEquals("ru.mirea.kokuevdd.profile", appContext.getPackageName());
     }
 }

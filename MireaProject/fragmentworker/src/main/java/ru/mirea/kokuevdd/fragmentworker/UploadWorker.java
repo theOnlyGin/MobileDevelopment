@@ -11,29 +11,25 @@ import androidx.work.WorkerParameters;
 import java.util.concurrent.TimeUnit;
 
 public class UploadWorker extends Worker {
-   // Fragment fragmentw;
-
     FragmentManager fragmentManager;
     static final String TAG = "UploadWorker";
+
     public UploadWorker(
             @NonNull Context context,
             @NonNull WorkerParameters params) {
         super(context, params);
     }
+
     @Override
     public Result doWork() {
-        Log.d(TAG, "doWork: start");
-
-  //      Fragment fragmentw = new WorkerFragment();
-
-
+        Log.d(TAG, "doWork: start"); // Точка начала выполнения работы
 
         try {
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(10); // Имитация выполнения работы в течение 10 секунд
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "doWork: end");
-        return Result.success();
+        Log.d(TAG, "doWork: end"); // Точка завершения выполнения работы
+        return Result.success(); // Возвращение результата успешного выполнения работы
     }
 }

@@ -15,7 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class VoiceActivity extends AppCompatActivity {
-    private String recordFilePath1 = "K://Android Studio projects/Lessson5/audiorecord/src/main/res/raw";
+    private String recordFilePath1 = "C://Users//FPS//Documents//audioRecordAS";
+    // Путь к файлу записи.
 
     private final String TAG = VoiceActivity.class.getSimpleName();
 
@@ -35,8 +36,9 @@ public class VoiceActivity extends AppCompatActivity {
         recordButton = findViewById(R.id.recordButton);
         playButton = findViewById(R.id.playButton);
         playButton.setEnabled(false);
-        recordFilePath = (new File(getExternalFilesDir(Environment.DIRECTORY_MUSIC), "/audiorecordtest.3gp")).getAbsolutePath();
-
+        // Кнопка Play неактивна до начала записи.
+        recordFilePath = (new File(getExternalFilesDir(Environment.DIRECTORY_MUSIC), "C://Users//FPS//Documents//audioRecordAS//audiorecordtest.3gp")).getAbsolutePath();
+        // Установка пути для сохранения аудиозаписи.
 
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,8 @@ public class VoiceActivity extends AppCompatActivity {
                 isStartRecording = !isStartRecording;
             }
         });
+        // Обработчик нажатия на кнопку записи и остановки записи.
+
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,15 +72,17 @@ public class VoiceActivity extends AppCompatActivity {
                 isStartPlaying = !isStartPlaying;
             }
         });
+        // Обработчик нажатия на кнопку воспроизведения и остановки воспроизведения.
     }
 
-
     public void onClickCameraActivityTwo(View view) {
+        // Переход к активности CameraActivity
         Intent intent = new Intent(this, CameraActivity.class);
         startActivity(intent);
     }
 
     private void startPlaying() {
+        // Начать воспроизведение аудиофайла
         player = new MediaPlayer();
         try {
             player.setDataSource(recordFilePath);
@@ -88,11 +94,13 @@ public class VoiceActivity extends AppCompatActivity {
     }
 
     private void stopPlaying() {
+        // Остановить воспроизведение и освободить ресурсы MediaPlayer
         player.release();
         player = null;
     }
 
     private void startRecording() {
+        // Начать запись аудио
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -107,6 +115,7 @@ public class VoiceActivity extends AppCompatActivity {
     }
 
     private void stopRecording() {
+        // Остановить запись и освободить ресурсы MediaRecorder
         recorder.stop();
         recorder.release();
         recorder = null;

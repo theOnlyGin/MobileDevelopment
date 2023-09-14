@@ -16,30 +16,28 @@ import android.view.ViewGroup;
  */
 public class WorkerFragmentSecond extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // TODO: Переименуйте параметры имен так, чтобы они соответствовали вашему использованию.
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     static final String TAG = "WorkerFragmentSecond";
 
-    // TODO: Rename and change types of parameters
+    // TODO: Переименуйте и измените типы параметров, если это необходимо для вашего использования.
     private String mParam1;
     private String mParam2;
 
     public WorkerFragmentSecond() {
-        // Required empty public constructor
+        // Обязательный пустой публичный конструктор.
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Используйте этот фабричный метод для создания нового экземпляра фрагмента с заданными параметрами.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WorkerFragmentSecond.
+     * @param param1 Параметр 1.
+     * @param param2 Параметр 2.
+     * @return Новый экземпляр фрагмента WorkerFragmentSecond.
      */
-    // TODO: Rename and change types and number of parameters
+    // TODO: Переименуйте и измените типы и количество параметров, если это необходимо для вашего использования.
     public static WorkerFragmentSecond newInstance(String param1, String param2) {
         WorkerFragmentSecond fragment = new WorkerFragmentSecond();
         Bundle args = new Bundle();
@@ -53,14 +51,12 @@ public class WorkerFragmentSecond extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d(TAG, "WorkFragmentSecond Start");
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "WorkFragmentSecond Destroy");
-
     }
 
     @Override
@@ -75,7 +71,7 @@ public class WorkerFragmentSecond extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Надуйте макет для этого фрагмента
         return inflater.inflate(R.layout.fragment_worker_second, container, false);
     }
 }

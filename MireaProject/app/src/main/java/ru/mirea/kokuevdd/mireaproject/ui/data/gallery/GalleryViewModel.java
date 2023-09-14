@@ -9,10 +9,14 @@ public class GalleryViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
     public GalleryViewModel() {
+        // Создаем MutableLiveData с типом String
         mText = new MutableLiveData<>();
+
+        // Устанавливаем начальное значение в MutableLiveData
         mText.setValue("This is gallery fragment");
     }
 
+    // Метод для получения LiveData с текстовыми данными
     public LiveData<String> getText() {
         return mText;
     }

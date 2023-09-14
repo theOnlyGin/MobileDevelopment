@@ -15,46 +15,37 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
 
     EditText editText;
-
     Fragment fragment1, fragment2;
     FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        // Инициализация фрагментов
         fragment1 = new ProfileFragment();
         fragment2 = new Profile2Fragment();
     }
 
     public void onClick(View view) {
-        fragmentManager = getSupportFragmentManager();
-        sharedPref = getSharedPreferences("mirea_settings", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        fragmentManager = getSupportFragmentManager(); // Получение менеджера фрагментов
+        sharedPref = getSharedPreferences("mirea_settings", Context.MODE_PRIVATE); // Получение доступа к SharedPreferences
+        SharedPreferences.Editor editor = sharedPref.edit(); // Получение редактора SharedPreferences
 
         switch (view.getId()){
             case R.id.btnFirstFragment:
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment1).
-                        commit();
-
-      //          editText = findViewById(R.id.editTextTextPersonName);
-
-     //           String name = sharedPref.getString("Text1", "unknown");
-
-    //            editText.setText(name);
+                        commit(); // Замена фрагмента в контейнере
 
                 break;
             case R.id.btnSecondFragment:
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment2).
-                        commit();
+                        commit(); // Замена фрагмента в контейнере
 
                 break;
             default:
                 break;
         }
     }
-
-
 }

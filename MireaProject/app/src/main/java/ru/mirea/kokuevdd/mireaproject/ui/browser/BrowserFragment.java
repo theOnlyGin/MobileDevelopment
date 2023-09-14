@@ -19,27 +19,30 @@ public class BrowserFragment extends Fragment {
     private FragmentBrowserBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Создаем ViewModel для фрагмента браузера с использованием ViewModelProvider
         BrowserViewModel browserViewModel =
                 new ViewModelProvider(this).get(BrowserViewModel.class);
 
+        // Создаем и связываем макет фрагмента
         binding = FragmentBrowserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Находим WebView в макете
         WebView webView = root.findViewById(R.id.web_view_g);
 
-        // Url of website is passed here
+        // Загружаем URL в WebView (в данном случае, google.com)
         webView.loadUrl("https://google.com/");
 
-        // WebViewController is used
+        // Устанавливаем WebViewClient для обработки загрузки URL в WebView
         webView.setWebViewClient(new WebViewFragment());
 
         return root;
-
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // Очищаем ссылку на привязку для избежания утечек памяти
         binding = null;
     }
 }

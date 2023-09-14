@@ -29,10 +29,9 @@ public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
 
     private String fileName = "textNormal.txt";
-
     private String fileName2 = "textSecret.txt";
 
-    public	static	final	String	ARG_WORD	=	"word";
+    public static final String ARG_WORD = "word";
 
     TextView tv;
 
@@ -41,33 +40,29 @@ public class SecondFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        // Настроить привязку для второго фрагмента
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Установить слушатель для кнопки во втором фрагменте
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Перейти к первому фрагменту при нажатии кнопки
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
 
+        // Найти TextView по его идентификатору
         TextView tv = view.findViewById(R.id.textView);
 
+        // Получить текст из файла и установить его в TextView
         String text = getTextFromFile();
-
-     //   byte[] secretText = getTextFromFile();
-
-     //   SecretKey originalKey = getSecretFromFile();
-
-    //    String decryptText = decryptMsg(secretText, originalKey);
-
         tv.setText(text);
     }
 
@@ -77,6 +72,7 @@ public class SecondFragment extends Fragment {
         binding = null;
     }
 
+    // Метод для чтения текста из файла
     public String getTextFromFile() {
         FileInputStream fin = null;
         try {
@@ -84,50 +80,54 @@ public class SecondFragment extends Fragment {
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String(bytes);
-
             return text;
         } catch (IOException ex) {
+            // Обработка ошибок чтения файла
         } finally {
             try {
                 if (fin != null)
                     fin.close();
             } catch (IOException ex) {
+                // Обработка ошибок закрытия файла
             }
         }
         return null;
     }
 
+    // Метод для получения секретного ключа из файла
     public SecretKey getSecretFromFile() {
         FileInputStream fin = null;
         try {
             fin = getActivity().openFileInput(fileName2);
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
-
-            SecretKey originalKey =	new SecretKeySpec(bytes,	0,	bytes.length,	"AES");
-
+            SecretKey originalKey = new SecretKeySpec(bytes, 0, bytes.length, "AES");
             return originalKey;
         } catch (IOException ex) {
+            // Обработка ошибок чтения файла
         } finally {
             try {
                 if (fin != null)
                     fin.close();
             } catch (IOException ex) {
+                // Обработка ошибок закрытия файла
             }
         }
         return null;
     }
 
-    public	static	String	decryptMsg(byte[]	cipherText,	SecretKey	secret){
-        /*	Decrypt	the	message	*/
-        try	{
-            Cipher cipher	=	Cipher.getInstance("AES");
-            cipher.init(Cipher.DECRYPT_MODE,	secret);
-            return	new	String(cipher.doFinal(cipherText));
-        }	catch	(NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
-                       | BadPaddingException | InvalidKeyException e)	{
-            throw	new	RuntimeException(e);
+    // Метод для расшифровки текста с использованием секретного ключа
+    public static String decryptMsg(byte[] cipherText, SecretKey secret) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secret);
+            return new String(cipher.doFinal(cipherText));
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException |
+                 BadPaddingException | InvalidKeyException e) {
+            // Обработка ошибок расшифровки
+            throw new RuntimeException(e);
         }
     }
 }
+
 

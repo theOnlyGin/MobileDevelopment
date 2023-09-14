@@ -30,36 +30,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static final int CAMERA_REQUEST = 0;
     private boolean isWork = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sensorManager =
-                (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-        magneticSensor = sensorManager
-                .getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        int cameraPermissionStatus = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA);
-        int storagePermissionStatus = ContextCompat.checkSelfPermission(this, android.Manifest.permission.
-                WRITE_EXTERNAL_STORAGE);
-        int audioRecordPermissionStatus = ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.RECORD_AUDIO);
+        // Инициализация менеджера сенсоров и магнитного сенсора
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED && storagePermissionStatus
-                == PackageManager.PERMISSION_GRANTED && audioRecordPermissionStatus
-                == PackageManager.PERMISSION_GRANTED) {
+        // Проверка разрешений для камеры, записи и хранения данных
+        int cameraPermissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        int storagePermissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int audioRecordPermissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+
+        if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED &&
+                storagePermissionStatus == PackageManager.PERMISSION_GRANTED &&
+                audioRecordPermissionStatus == PackageManager.PERMISSION_GRANTED) {
             isWork = true;
         } else {
-// Выполняется запрос к пользователь на получение необходимых разрешений
-            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_PERMISSION);
+            // Запрос разрешений у пользователя
+            ActivityCompat.requestPermissions(this,
+                    new String[] {
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO
+                    },
+                    REQUEST_CODE_PERMISSION);
         }
-
-
-
-
 
         magneticxTextView = findViewById(R.id.textViewAzimuth);
         magneticyTextView = findViewById(R.id.textViewPitch);
@@ -67,38 +65,41 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void onClickNewActivity(View view) {
+        // Запуск новой активности при нажатии на кнопку
         Intent intent = new Intent(this, CameraActivity.class);
-
         startActivity(intent);
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        // Отключение регистрации сенсоров при приостановке активности
         sensorManager.unregisterListener(this);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, magneticSensor,
-                SensorManager.SENSOR_DELAY_NORMAL);
+        // Регистрация сенсоров при восстановлении активности
+        sensorManager.registerListener(this, magneticSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
+
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             float valueX = event.values[0];
             float valueY = event.values[1];
             float valueZ = event.values[2];
+
+            // Установка значений сенсора в текстовые поля
             magneticxTextView.setText("Magnit field x: " + valueX);
             magneticyTextView.setText("Magnit field y: " + valueY);
             magneticzTextView.setText("Magnit field z: " + valueZ);
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Обработка изменения точности сенсора (пустой метод)
     }
-
-
-
 }

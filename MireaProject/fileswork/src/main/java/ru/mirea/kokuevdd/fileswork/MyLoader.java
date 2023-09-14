@@ -18,53 +18,59 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public	class	MyLoader	extends AsyncTaskLoader<String> {
-    private	String	firstName;
-    public	static	final	String	ARG_WORD	=	"word";
-    public	MyLoader(@NonNull Context context, Bundle args)	{
+public class MyLoader extends AsyncTaskLoader<String> {
+
+    private String firstName;
+
+    public static final String ARG_WORD = "word";
+
+    // Конструктор для MyLoader, принимающий контекст и аргументы
+    public MyLoader(@NonNull Context context, Bundle args) {
         super(context);
-        if	(args	!=	null) {
-            byte[] cryptText = args.getByteArray(ARG_WORD);
-            byte[] key = args.getByteArray("key");
+
+        if (args != null) {
+            byte[] cryptText = args.getByteArray(ARG_WORD); // Получение зашифрованного текста из аргументов
+            byte[] key = args.getByteArray("key"); // Получение ключа из аргументов
+
             Log.d(MyLoader.class.getSimpleName(), "Key: " + key.length);
             Log.d(MyLoader.class.getSimpleName(), "cryptkey: " + String.valueOf(cryptText));
 
-            SecretKey originalKey =	new SecretKeySpec(key,	0,	key.length,	"AES");
-            String decryptText = decryptMsg(cryptText, originalKey);
+            SecretKey originalKey = new SecretKeySpec(key, 0, key.length, "AES"); // Создание секретного ключа
+            String decryptText = decryptMsg(cryptText, originalKey); // Расшифровка текста
+
             Log.d(MyLoader.class.getSimpleName(), "decryptText: " + decryptText);
 
-            SecondFragment secondFragment =  new SecondFragment();
-
+            SecondFragment secondFragment = new SecondFragment();
             Bundle bundle = new Bundle();
-            args.putString("String", decryptText);
+            bundle.putString("String", decryptText);
 
-            secondFragment.setArguments(bundle);
+            secondFragment.setArguments(bundle); // Установка аргументов для второго фрагмента
         }
-
-
-
     }
+
     @Override
-    protected	void	onStartLoading()	{
+    protected void onStartLoading() {
         super.onStartLoading();
-        forceLoad();
-    }
-    @Override
-    public	String	loadInBackground()	{
-        //	emulate	long-running	operation
-        SystemClock.sleep(5000);
-        return	firstName;
+        forceLoad(); // Запуск задачи загрузки в фоновом потоке
     }
 
-    public	static	String	decryptMsg(byte[]	cipherText,	SecretKey	secret){
-        /*	Decrypt	the	message	*/
-        try	{
-            Cipher cipher	=	Cipher.getInstance("AES");
-            cipher.init(Cipher.DECRYPT_MODE,	secret);
-            return	new	String(cipher.doFinal(cipherText));
-        }	catch	(NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
-                       | BadPaddingException | InvalidKeyException e)	{
-            throw	new	RuntimeException(e);
+    @Override
+    public String loadInBackground() {
+        // Эмуляция долгой операции в фоновом потоке
+        SystemClock.sleep(5000);
+        return firstName; // Возвращение результата загрузки
+    }
+
+    // Метод для расшифровки текста с использованием секретного ключа
+    public static String decryptMsg(byte[] cipherText, SecretKey secret) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secret);
+            return new String(cipher.doFinal(cipherText)); // Расшифрованный текст
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException |
+                 BadPaddingException | InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
     }
 }
+
